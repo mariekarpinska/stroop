@@ -82,15 +82,15 @@ function addEventListenersToNumpadKeysTwo() {
 
     switch (event.key) {
       case "1":
-        handleColorButtonClick(redChoiceTwo);
+        handleColorButtonClickTwo(redChoiceTwo);
         indicateButtonChoice(redChoiceTwo);
         break;
       case "2":
-        handleColorButtonClick(greenChoiceTwo);
+        handleColorButtonClickTwo(greenChoiceTwo);
         indicateButtonChoice(greenChoiceTwo);
         break;
       case "3":
-        handleColorButtonClick(blueChoiceTwo);
+        handleColorButtonClickTwo(blueChoiceTwo);
         indicateButtonChoice(blueChoiceTwo);
         break;
     }
@@ -234,9 +234,8 @@ function handleStartClick2() {
 
   const {
     form,
-    buttons: { redChoiceTwo, greenChoiceTwo, blueChoiceTwo },
+    buttons: { startTwo, redChoiceTwo, greenChoiceTwo, blueChoiceTwo },
   } = domElements;
-  const { startTwo } = domElements.buttons;
   toggleDomElementsDisplay([
     form,
     startTwo,
@@ -244,6 +243,7 @@ function handleStartClick2() {
     greenChoiceTwo,
     blueChoiceTwo,
   ]);
+
   domElements.containers.end.remove();
 
   addEventListenersToNumpadKeysTwo();
@@ -292,18 +292,19 @@ function endTest() {
   firstPhaseCorrect = matchingCounter / 2 + mismatchedCounter / 2;
 
   addEndTestCounters();
+
   const { startTwo, redChoiceTwo, greenChoiceTwo, blueChoiceTwo } =
     domElements.buttons;
   startTwo.addEventListener("click", () => handleStartClick2());
 
   redChoiceTwo.addEventListener("click", () =>
-    handleColorButtonClick(redChoiceTwo)
+    handleColorButtonClickTwo(redChoiceTwo)
   );
   greenChoiceTwo.addEventListener("click", () =>
-    handleColorButtonClick(greenChoiceTwo)
+    handleColorButtonClickTwo(greenChoiceTwo)
   );
   blueChoiceTwo.addEventListener("click", () =>
-    handleColorButtonClick(blueChoiceTwo)
+    handleColorButtonClickTwo(blueChoiceTwo)
   );
 }
 
