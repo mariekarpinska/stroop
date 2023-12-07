@@ -141,7 +141,7 @@ function displayNewWordAndRestartTimer() {
 /** Validates number input, hides start button, shows color buttons, displays printed word and (re)starts timer */
 function handleStartClick() {
   numberOfWords = 20;
-  evaluatingMeaningOrColor = getPrintedWordColor(); // phase 2: getPrintedWordText
+  evaluatingMeaningOrColor = getPrintedWordColor; // phase 2: getPrintedWordText
 
   const {
     form,
@@ -160,7 +160,7 @@ function handleStartClick() {
 
 function handleStartClick2() {
   numberOfWords = 20;
-  evaluatingMeaningOrColor = getPrintedWordText(); // phase 2
+  evaluatingMeaningOrColor = getPrintedWordText; // phase 2
 
   // Clear counters for the second phase
   matchedTimes = [];
