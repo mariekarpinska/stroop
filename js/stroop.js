@@ -217,7 +217,7 @@ function endTest() {
   const {
     wordDisplayArea,
     containers: { result },
-    buttons: { start2, redChoice, greenChoice, blueChoice },
+    buttons: { redChoice, greenChoice, blueChoice },
   } = domElements;
 
   toggleDomElementsDisplay([
@@ -232,6 +232,7 @@ function endTest() {
   firstPhaseCorrect = matchingCounter / 2 + mismatchedCounter / 2;
 
   addEndTestCounters();
+  const { start2 } = domElements.buttons;
   start2.addEventListener("click", () => handleStartClick2());
 }
 
