@@ -169,18 +169,28 @@ function displayNewPrintedWord() {
 
 /** Randomly generates a matching or mismatched word-color pair and displays it */
 function displayNewPrintedWordTwo() {
+  console.log("displayNewPrintedWordTwo");
   const { wordDisplayAreaTwo } = domElements;
 
   let generationFunction;
 
   if (matchingCounter >= numberOfWords && mismatchedCounter < numberOfWords) {
+    console.log(
+      "matchingCounter >= numberOfWords && mismatchedCounter < numberOfWords"
+    );
     generationFunction = generateMismatchedWordAndColor;
   } else if (
-    mismatchedCounter >= numberOfWords &&
-    matchingCounter < numberOfWords
+    (console.log(
+      "mismatchedCounter >= numberOfWords && matchingCounter < numberOfWords"
+    ),
+    mismatchedCounter >= numberOfWords && matchingCounter < numberOfWords)
   ) {
+    console.log(
+      "mismatchedCounter >= numberOfWords && matchingCounter < numberOfWords"
+    );
     generationFunction = generateMatchingWordAndColor;
   } else {
+    console.log("else");
     generationFunction =
       Math.round(Math.random()) === 0
         ? generateMismatchedWordAndColor
@@ -197,6 +207,7 @@ function displayNewWordAndRestartTimer() {
   timeFunctions.restartTimer();
 }
 function displayNewWordAndRestartTimerTwo() {
+  console.log("displayNewWordAndRestartTimerTwo");
   displayNewPrintedWordTwo();
   timeFunctions.restartTimer();
 }
@@ -247,7 +258,7 @@ function handleStartClick2() {
   domElements.containers.end.remove();
 
   addEventListenersToNumpadKeysTwo();
-
+  console.log("addEventListenersToNumpadKeysTwo");
   displayNewWordAndRestartTimerTwo();
 
   setTimeout(endTest2, 4500);
@@ -259,7 +270,9 @@ function handleColorButtonClick(buttonClicked$) {
   logInfo();
 }
 function handleColorButtonClickTwo(buttonClicked$) {
+  console.log("handleColorButtonClickTwo");
   handleButtonAnswer(buttonClicked$);
+  console.log("handleButtonAnswer(buttonClicked$);");
   displayNewWordAndRestartTimerTwo();
   logInfo();
 }
