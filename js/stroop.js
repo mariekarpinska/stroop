@@ -113,6 +113,10 @@ function handleMismatchScenario() {
 
 const handleCorrectButtonAnswer = () =>
   isPrintedWordMatching() ? handleMatchScenario() : handleMismatchScenario();
+
+const handleCorrectButtonAnswerTwo = () =>
+  isPrintedWordMatchingTwo() ? handleMatchScenario() : handleMismatchScenario();
+
 const handleIncorrectButtonAnswer = () => incorrectCounter++;
 
 /** Checks if user's answer was correct */
