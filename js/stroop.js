@@ -93,11 +93,19 @@ const handleIncorrectButtonAnswer = () => incorrectCounter++;
 
 /** Checks if user's answer was correct */
 function handleButtonAnswer(button$) {
-  getButtonText(button$) === evaluatingMeaningOrColor
-    ? handleCorrectButtonAnswer()
-    : handleIncorrectButtonAnswer();
+  let isCorrect = false;
 
-  const isCorrect = getButtonText(button$) === evaluatingMeaningOrColor;
+  if (evaluatingMeaningOrColor === getPrintedWordText) {
+    getButtonText(button$) === getPrintedWordText()
+      ? handleCorrectButtonAnswer()
+      : handleIncorrectButtonAnswer();
+    isCorrect = getButtonText(button$) === getPrintedWordText();
+  } else {
+    getButtonText(button$) === getPrintedWordColor()
+      ? handleCorrectButtonAnswer()
+      : handleIncorrectButtonAnswer();
+    isCorrect = getButtonText(button$) === getPrintedWordColor();
+  }
 
   if (isCorrect) {
     handleCorrectButtonAnswer();
@@ -322,9 +330,10 @@ function addEndTestCounters() {
   // # of incorrect
   let num_matching_correct = matchingCounter / 2; // Corrected variable name
   let num_mismatching_correct = mismatchedCounter / 2;
+  let incorrectCount = incorrectCounter / 2;
   domElements.timeDivs.matched.innerHTML = num_matching_correct;
   domElements.timeDivs.mismatched.innerHTML = num_mismatching_correct; // Corrected variable name
-  domElements.incorrectDiv.innerHTML = incorrectCounter;
+  domElements.incorrectDiv.innerHTML = incorrectCount;
 }
 
 /** Adds event handlers to buttons */
