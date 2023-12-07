@@ -147,8 +147,37 @@ function displayNewPrintedWord() {
   wordDisplayArea.style.color = pair[1];
 }
 
+/** Randomly generates a matching or mismatched word-color pair and displays it */
+function displayNewPrintedWordTwo() {
+  const { wordDisplayAreaTwo } = domElements;
+
+  let generationFunction;
+
+  if (matchingCounter >= numberOfWords && mismatchedCounter < numberOfWords) {
+    generationFunction = generateMismatchedWordAndColor;
+  } else if (
+    mismatchedCounter >= numberOfWords &&
+    matchingCounter < numberOfWords
+  ) {
+    generationFunction = generateMatchingWordAndColor;
+  } else {
+    generationFunction =
+      Math.round(Math.random()) === 0
+        ? generateMismatchedWordAndColor
+        : generateMatchingWordAndColor;
+  }
+
+  const pair = generationFunction();
+  wordDisplayAreaTwo.innerHTML = pair[0];
+  wordDisplayAreaTwo.style.color = pair[1];
+}
+
 function displayNewWordAndRestartTimer() {
   displayNewPrintedWord();
+  timeFunctions.restartTimer();
+}
+function displayNewWordAndRestartTimerTwo() {
+  displayNewPrintedWordTwo();
   timeFunctions.restartTimer();
 }
 
@@ -187,13 +216,19 @@ function handleStartClick2() {
     form,
     buttons: { redChoice, greenChoice, blueChoice },
   } = domElements;
-  const { start2 } = domElements.buttons;
-  toggleDomElementsDisplay([form, start2, redChoice, greenChoice, blueChoice]);
+  const { startTwo } = domElements.buttons;
+  toggleDomElementsDisplay([
+    form,
+    startTwo,
+    redChoice,
+    greenChoice,
+    blueChoice,
+  ]);
   domElements.containers.end.remove();
 
   addEventListenersToNumpadKeys();
 
-  displayNewWordAndRestartTimer();
+  displayNewWordAndRestartTimerTwo();
 
   setTimeout(endTest2, 45000);
 }
@@ -217,7 +252,6 @@ function endTest() {
   const {
     wordDisplayArea,
     containers: { result },
-    buttons: { redChoice, greenChoice, blueChoice },
   } = domElements;
 
   toggleDomElementsDisplay([
@@ -232,8 +266,16 @@ function endTest() {
   firstPhaseCorrect = matchingCounter / 2 + mismatchedCounter / 2;
 
   addEndTestCounters();
-  const { start2 } = domElements.buttons;
-  start2.addEventListener("click", () => handleStartClick2());
+  const { startTwo } = domElements.buttons;
+  startTwo.addEventListener("click", () => handleStartClick2());
+  const { redChoice, greenChoice, blueChoice } = domElements.buttons;
+  redChoice.addEventListener("click", () => handleColorButtonClick(redChoice));
+  greenChoice.addEventListener("click", () =>
+    handleColorButtonClick(greenChoice)
+  );
+  blueChoice.addEventListener("click", () =>
+    handleColorButtonClick(blueChoice)
+  );
 }
 
 /** Removes test container with choice buttons and displays end information counters */
@@ -251,7 +293,7 @@ function endTest2() {
     greenChoice,
     blueChoice,
   ]);
-  domElements.containers.test2.remove();
+  domElements.containers.testTwo.remove();
 
   secondPhaseCorrect = matchingCounter / 2 + mismatchedCounter / 2;
 

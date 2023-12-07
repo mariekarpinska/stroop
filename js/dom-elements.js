@@ -1,7 +1,7 @@
 export const domElements = {
   buttons: {
     start: document.getElementById("start-button"),
-    start2: document.getElementById("start-button2"),
+    startTwo: document.getElementById("start-button-two"),
     redChoice: document.getElementById("red-choice-button"),
     greenChoice: document.getElementById("green-choice-button"),
     blueChoice: document.getElementById("blue-choice-button"),
@@ -16,13 +16,14 @@ export const domElements = {
   containers: {
     starting: document.getElementById("start-container"),
     test: document.getElementById("test-container"),
-    test2: document.getElementById("test-container2"),
+    testTwo: document.getElementById("test-container-two"),
     end: document.getElementById("end-container"),
     result: document.getElementById("result-container"),
     error: document.getElementById("error-container"),
   },
 
   wordDisplayArea: document.getElementById("word-display-area"),
+  wordDisplayAreaTwo: document.getElementById("word-display-area-two"),
   incorrectDiv: document.getElementById("incorrect-div"),
   errorMessage: document.getElementById("error-message"),
   errorSound: document.getElementById("error-sound"),
