@@ -326,15 +326,15 @@ function endTest2() {
   const {
     wordDisplayAreaTwo,
     containers: { result },
-    buttons: { redChoice, greenChoice, blueChoice },
+    buttons: { redChoiceTwo, greenChoiceTwo, blueChoiceTwo },
   } = domElements;
 
   toggleDomElementsDisplay([
     wordDisplayAreaTwo,
     result,
-    redChoice,
-    greenChoice,
-    blueChoice,
+    redChoiceTwo,
+    greenChoiceTwo,
+    blueChoiceTwo,
   ]);
   domElements.containers.testTwo.remove();
 
@@ -429,13 +429,12 @@ function addEndTestCounters() {
 }
 
 function loadTopScores() {
-  try {
-    const topScoresData = fs.readFileSync("topScores.json", "utf8");
-    return JSON.parse(topScoresData);
-  } catch (error) {
-    console.error("Error reading topScores.json:", error);
-    return [];
-  }
+  return fetch("topScores.json")
+    .then((response) => response.json())
+    .catch((error) => {
+      console.error("Error reading topScores.json:", error);
+      return [];
+    });
 }
 
 /** Adds event handlers to buttons */
