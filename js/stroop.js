@@ -217,8 +217,8 @@ function addEndTestCounters() {
   // # of matched correct words
   // # of mismatched correct words
   // # of incrrect
-  num_matching_correct = matchingCounter / 2;
-  num_mismatching_correct = mismatchingCounter / 2;
+  let num_matching_correct = matchingCounter / 2;
+  let num_mismatching_correct = mismatchingCounter / 2;
   domElements.timeDivs.matched.innerHTML = num_matching_correct;
   domElements.timeDivs.mismatched.innerHTML = num_mismatching_correct;
   domElements.incorrectDiv.innerHTML = incorrectCounter;
