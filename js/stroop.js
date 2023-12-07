@@ -26,7 +26,7 @@ const toggleDomElementsDisplay = (elements$) =>
   elements$.forEach((el$) => el$.classList.toggle("no-display"));
 
 const getPrintedWordText = () => domElements.wordDisplayArea.innerHTML;
-const getPrintedWordColor = () => domElements.wordDisplayArea.style.color;
+const getPrintedWordColor = () => domElements.wordDisplayAreaTwo.style.color;
 const isPrintedWordMatching = () =>
   getPrintedWordText() === getPrintedWordColor();
 // const getQuantityFieldValue = () =>
@@ -184,7 +184,7 @@ function displayNewWordAndRestartTimerTwo() {
 /** Validates number input, hides start button, shows color buttons, displays printed word and (re)starts timer */
 function handleStartClick() {
   numberOfWords = 20;
-  evaluatingMeaningOrColor = getPrintedWordColor; // phase 2: getPrintedWordText
+  evaluatingMeaningOrColor = getPrintedWordText; // phase 2: getPrintedWordText
 
   const {
     form,
@@ -198,12 +198,12 @@ function handleStartClick() {
 
   displayNewWordAndRestartTimer();
 
-  setTimeout(endTest, 450);
+  setTimeout(endTest, 4500);
 }
 
 function handleStartClick2() {
   numberOfWords = 20;
-  evaluatingMeaningOrColor = getPrintedWordText; // phase 2
+  evaluatingMeaningOrColor = getPrintedWordColor; // phase 2
 
   // Clear counters for the second phase
   matchedTimes = [];
@@ -230,7 +230,7 @@ function handleStartClick2() {
 
   displayNewWordAndRestartTimerTwo();
 
-  setTimeout(endTest2, 450);
+  setTimeout(endTest2, 4500);
 }
 
 function handleColorButtonClick(buttonClicked$) {
@@ -281,13 +281,13 @@ function endTest() {
 /** Removes test container with choice buttons and displays end information counters */
 function endTest2() {
   const {
-    wordDisplayArea,
+    wordDisplayAreaTwo,
     containers: { result },
     buttons: { redChoice, greenChoice, blueChoice },
   } = domElements;
 
   toggleDomElementsDisplay([
-    wordDisplayArea,
+    wordDisplayAreaTwo,
     result,
     redChoice,
     greenChoice,
@@ -383,6 +383,16 @@ function addEndTestCounters() {
   domElements.timeDivs.matched.innerHTML = num_matching_correct;
   domElements.timeDivs.mismatched.innerHTML = num_mismatching_correct; // Corrected variable name
   domElements.incorrectDiv.innerHTML = incorrectCount;
+}
+
+function loadTopScores() {
+  try {
+    const topScoresData = fs.readFileSync("topScores.json", "utf8");
+    return JSON.parse(topScoresData);
+  } catch (error) {
+    console.error("Error reading topScores.json:", error);
+    return [];
+  }
 }
 
 /** Adds event handlers to buttons */

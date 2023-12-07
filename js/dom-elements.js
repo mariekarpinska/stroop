@@ -5,6 +5,9 @@ export const domElements = {
     redChoice: document.getElementById("red-choice-button"),
     greenChoice: document.getElementById("green-choice-button"),
     blueChoice: document.getElementById("blue-choice-button"),
+    redChoiceTwo: document.getElementById("red-choice-button-two"),
+    greenChoiceTwo: document.getElementById("green-choice-button-two"),
+    blueChoiceTwo: document.getElementById("blue-choice-button-two"),
     download: document.getElementById("download-button"),
   },
 
