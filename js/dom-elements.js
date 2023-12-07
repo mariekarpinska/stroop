@@ -14,6 +14,8 @@ export const domElements = {
   timeDivs: {
     matched: document.getElementById("matched-time-div"),
     mismatched: document.getElementById("mismatched-time-div"),
+    matchedScore: document.getElementById("matched-score"),
+    mismatchedScore: document.getElementById("mismatched-score"),
   },
 
   containers: {
@@ -28,6 +30,7 @@ export const domElements = {
   wordDisplayArea: document.getElementById("word-display-area"),
   wordDisplayAreaTwo: document.getElementById("word-display-area-two"),
   incorrectDiv: document.getElementById("incorrect-div"),
+  incorrectScore: document.getElementById("incorrect-score"),
   errorMessage: document.getElementById("error-message"),
   errorSound: document.getElementById("error-sound"),
 

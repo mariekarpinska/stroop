@@ -338,6 +338,8 @@ function endTest2() {
   ]);
   domElements.containers.testTwo.remove();
 
+  addEndTestCountersTwo();
+
   let secondPhaseCorrect = matchingCounter / 2 + mismatchedCounter / 2;
 
   score =
@@ -389,7 +391,6 @@ function endTest2() {
 
     endContainer2.appendChild(formContainer);
   } else {
-    addEndTestCounters();
     displayTopScores(topScores, endContainer2);
   }
 }
@@ -426,6 +427,17 @@ function addEndTestCounters() {
   domElements.timeDivs.matched.innerHTML = num_matching_correct;
   domElements.timeDivs.mismatched.innerHTML = num_mismatching_correct; // Corrected variable name
   domElements.incorrectDiv.innerHTML = incorrectCount;
+}
+function addEndTestCountersTwo() {
+  // # of matched correct words
+  // # of mismatched correct words
+  // # of incorrect
+  let num_matching_correct = matchingCounter / 2; // Corrected variable name
+  let num_mismatching_correct = mismatchedCounter / 2;
+  let incorrectCount = incorrectCounter / 2;
+  domElements.timeDivs.matchedScore.innerHTML = num_matching_correct;
+  domElements.timeDivs.mismatchedScore.innerHTML = num_mismatching_correct; // Corrected variable name
+  domElements.incorrectScore.innerHTML = incorrectCount;
 }
 
 function loadTopScores() {
