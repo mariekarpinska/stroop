@@ -198,7 +198,7 @@ function handleStartClick() {
 
   displayNewWordAndRestartTimer();
 
-  setTimeout(endTest, 45000);
+  setTimeout(endTest, 450);
 }
 
 function handleStartClick2() {
@@ -230,7 +230,7 @@ function handleStartClick2() {
 
   displayNewWordAndRestartTimerTwo();
 
-  setTimeout(endTest2, 45000);
+  setTimeout(endTest2, 450);
 }
 
 function handleColorButtonClick(buttonClicked$) {
@@ -254,6 +254,8 @@ function endTest() {
     containers: { result },
   } = domElements;
 
+  const { redChoice, greenChoice, blueChoice } = domElements.buttons;
+
   toggleDomElementsDisplay([
     wordDisplayArea,
     result,
@@ -268,7 +270,6 @@ function endTest() {
   addEndTestCounters();
   const { startTwo } = domElements.buttons;
   startTwo.addEventListener("click", () => handleStartClick2());
-  const { redChoice, greenChoice, blueChoice } = domElements.buttons;
   redChoice.addEventListener("click", () => handleColorButtonClick(redChoice));
   greenChoice.addEventListener("click", () =>
     handleColorButtonClick(greenChoice)
