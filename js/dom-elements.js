@@ -33,7 +33,10 @@ export const domElements = {
   wordDisplayAreaTwo: document.getElementById("word-display-area-two"),
   wordDisplayAreaThree: document.getElementById("word-display-area-three"),
   wordDisplayAreaFour: document.getElementById("word-display-area-four"),
-  wordDisplayAreaFive: document.getElementById("word-display-area-five"),
+  wordDisplayAreaEnglish: document.getElementById("word-display-area-five"),
+  wordDisplayAreaSpanish: document.getElementById(
+    "word-display-area-five-spanish"
+  ),
   incorrectDiv: document.getElementById("incorrect-div"),
   incorrectScore: document.getElementById("incorrect-score"),
   errorMessage: document.getElementById("error-message"),
