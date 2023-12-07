@@ -25,35 +25,43 @@
         <form id="form" autocomplete="off">
             <div id="choices-container">
                 <div class="form-container stimulus-number-container">
-                    <label for="stimulus-number">You will have 45 seconds</label>
-                    <img src="./images/question-circle-solid.svg" id="question-icon">
-                    <div id="quantity-information">
-                        <div id="quantity-text">Entering the number 15 will display 30 words in total - 15 with<br> matching meaning and color, 15 with mismatched meaning and color</div>
-                    </div>
+                    <label id="english-instructions" for="english">
+                        When you press start, 'red', 'blue', or 'green' will flash on the screen and the text will be colored red, blue, or green. For each word, **press the button corresponding to the meaning of the displayed word while ignoring the word's color**, and aim to maximize correct responses. You will have 45 seconds.
+                    </label>
+                    <label id="espanol-instructions" style="display: none;">
+                        Cuando presiones iniciar, 'red'(rojo), 'blue'(azul) o 'green'(verde) se iluminarán en la pantalla y el texto estará coloreado de rojo, azul o verde. Para cada palabra, presiona el botón que corresponde al significado de la palabra mostrada, ignorando el color de la palabra, y procura maximizar las respuestas correctas. Tendrás 45 segundos.
+                    </label>
                 </div>
+
+                <label for="language-selection">Instructions in:</label>
                 
+                <div class="form-container">
+                    <input type="radio" name="instruction-language" id="english" value="english" checked onchange="toggleInstructions()">
+                    <label for="english">English</label><br>
+                </div>
+    
+                <div class="form-container">
+                    <input type="radio" name="instruction-language" id="espanol" value="espanol" onchange="toggleInstructions()">
+                    <label for="espanol">Español</label><br>
+                </div>
+            </div>
+        </form>
+
+        <form id="form" autocomplete="off">
+            <div id="choices-container">
                 <div class="form-container">
                     <input type="radio" name="evaluation" id="word-meaning" value="word-meaning" checked>
                     <label for="word-meaning">Evaluate Word Meaning</label><br>
                 </div>
-    
+        
                 <div class="form-container">
                     <input type="radio" name="evaluation" id="word-color" value="word-color">
                     <label for="word-color">Evaluate Word Color</label><br>
                 </div>
-
-                <label for="stimulus-number">Instructions in:</label>
-                <div class="form-container">
-                    <input type="radio" name="evaluation" id="word-meaning" value="word-meaning" checked>
-                    <label for="word-meaning">English</label><br>
-                </div>
-    
-                <div class="form-container">
-                    <input type="radio" name="evaluation" id="word-color" value="word-color">
-                    <label for="word-color">Español</label><br>
-                </div>
             </div>
         </form>
+
+        
 
         <button class="button" id="start-button" type="button">Start</button>
     </div>
@@ -98,5 +106,20 @@
         </div>
 
     </div>
+
+    <script>
+        function toggleInstructions() {
+            const englishInstructions = document.getElementById('english-instructions');
+            const espanolInstructions = document.getElementById('espanol-instructions');
+            
+            if (document.getElementById('english').checked) {
+                englishInstructions.style.display = 'block';
+                espanolInstructions.style.display = 'none';
+            } else {
+                englishInstructions.style.display = 'none';
+                espanolInstructions.style.display = 'block';
+            }
+        }
+    </script>
 </body>
 </html>
