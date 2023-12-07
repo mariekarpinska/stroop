@@ -9,6 +9,7 @@ export const domElements = {
     greenChoiceTwo: document.getElementById("green-choice-button-two"),
     blueChoiceTwo: document.getElementById("blue-choice-button-two"),
     download: document.getElementById("download-button"),
+    learn: document.getElementById("learn-button"),
   },
 
   timeDivs: {
@@ -23,12 +24,16 @@ export const domElements = {
     test: document.getElementById("test-container"),
     testTwo: document.getElementById("test-container-two"),
     end: document.getElementById("end-container"),
+    endTwo: document.getElementById("end-container2"),
     result: document.getElementById("result-container"),
     error: document.getElementById("error-container"),
   },
 
   wordDisplayArea: document.getElementById("word-display-area"),
   wordDisplayAreaTwo: document.getElementById("word-display-area-two"),
+  wordDisplayAreaThree: document.getElementById("word-display-area-three"),
+  wordDisplayAreaFour: document.getElementById("word-display-area-four"),
+  wordDisplayAreaFive: document.getElementById("word-display-area-five"),
   incorrectDiv: document.getElementById("incorrect-div"),
   incorrectScore: document.getElementById("incorrect-score"),
   errorMessage: document.getElementById("error-message"),

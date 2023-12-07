@@ -264,6 +264,33 @@ function handleStartClick2() {
   setTimeout(endTest2, 4500);
 }
 
+function handleLearnClick() {
+  const {
+    wordDisplayAreaTwo,
+    wordDisplayAreaThree,
+    containers: { result },
+    buttons: { redChoiceTwo, greenChoiceTwo, blueChoiceTwo },
+  } = domElements;
+
+  toggleDomElementsDisplay([
+    wordDisplayAreaTwo,
+    wordDisplayAreaThree,
+    result,
+    redChoiceTwo,
+    greenChoiceTwo,
+    blueChoiceTwo,
+  ]);
+  domElements.containers.endTwo.remove();
+
+  const { wordDisplayAreaFour, wordDisplayAreaFive } = domElements;
+  wordDisplayAreaFour.innerHTML = "Your Score: " + score.toString();
+  wordDisplayAreaFour.style.color = "white";
+
+  wordDisplayAreaFive.innerHTML =
+    "You have just completed a Stroop test, where you saw a list of words on a computer screen. The words were all names of colors, such as “red”, “blue”, “green”, and so on. However, the words were printed in different colors than their meanings. For example, you might have seen the word “red” in blue ink, or the word “green” in yellow ink. Your task was to either name the word or the color of the ink, depending on the instructions. How did you do?";
+  wordDisplayAreaFive.style.color = "white";
+}
+
 function handleColorButtonClick(buttonClicked$) {
   handleButtonAnswer(buttonClicked$);
   displayNewWordAndRestartTimer();
@@ -337,6 +364,7 @@ function endTest2() {
     blueChoiceTwo,
   ]);
   domElements.containers.testTwo.remove();
+  const { wordDisplayAreaThree } = domElements;
 
   addEndTestCountersTwo();
 
@@ -345,14 +373,12 @@ function endTest2() {
   score =
     (firstPhaseCorrect * secondPhaseCorrect) /
     (firstPhaseCorrect + secondPhaseCorrect);
-  const scoreDiv = document.createElement("div");
-  scoreDiv.className = "time-container";
-  scoreDiv.innerHTML = `
-      <div class="time-title">Score</div>
-      <div class="time-div" id="score-div">${score.toFixed(2)}</div>
-    `;
 
-  result.appendChild(scoreDiv);
+  wordDisplayAreaThree.innerHTML = "Your Score: " + score.toString();
+  wordDisplayAreaThree.style.color = "white";
+
+  const { learn } = domElements.buttons;
+  learn.addEventListener("click", () => handleLearnClick());
 }
 
 /** Displays matching & mismatched time averages and incorrect counter */
