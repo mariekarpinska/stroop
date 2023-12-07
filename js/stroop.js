@@ -177,7 +177,6 @@ function handleColorButtonClick(buttonClicked$) {
 
 /** Logs reaction times and number of words in the console */
 function logInfo() {
-  console.clear();
   console.log("Matched times", matchedTimes);
   console.log("Mismatched times", mismatchedTimes);
   console.log("Matches", matchingCounter);
