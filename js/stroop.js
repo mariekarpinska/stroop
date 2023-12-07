@@ -252,9 +252,8 @@ function endTest() {
   const {
     wordDisplayArea,
     containers: { result },
+    buttons: { redChoice, greenChoice, blueChoice },
   } = domElements;
-
-  const { redChoice, greenChoice, blueChoice } = domElements.buttons;
 
   toggleDomElementsDisplay([
     wordDisplayArea,
