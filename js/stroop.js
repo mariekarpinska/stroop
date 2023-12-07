@@ -439,12 +439,27 @@ function addEndTestCountersTwo() {
   domElements.timeDivs.mismatchedScore.innerHTML = num_mismatching_correct; // Corrected variable name
   domElements.incorrectScore.innerHTML = incorrectCount;
 }
-
 function loadTopScores() {
-  return fetch("topScores.json")
-    .then((response) => response.json())
+  return fetch("topScores.txt")
+    .then((response) => response.text())
+    .then((data) => {
+      try {
+        const parsedData = JSON.parse(data);
+        console.log("parsedData", parsedData);
+
+        if (Array.isArray(parsedData)) {
+          return parsedData;
+        } else {
+          console.error("Invalid topScores data:", parsedData);
+          return [];
+        }
+      } catch (error) {
+        console.error("Error parsing topScores data:", error);
+        return [];
+      }
+    })
     .catch((error) => {
-      console.error("Error reading topScores.json:", error);
+      console.error("Error reading topScores.txt:", error);
       return [];
     });
 }
