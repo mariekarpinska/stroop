@@ -15,24 +15,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 
     <script defer type="module" src="./js/stroop.js"></script>
-    <script defer type="module" src="./js/number-field-validation.js"></script>
 
     <title>Stroop Effect</title>
 </head>
 
 <body>
-    <audio src="./sounds/error-sound.mp3" id="error-sound" class="no-visibility"></audio>
-
-    <div id="error-container" class="no-visibility">
-        <img src="./images/exclamation-circle-solid.svg" class="svg-icon">
-        <div id="error-message" class="text-with-icon">Quantity must be greater than or equal to 1</div>
-    </div>
 
     <div id="start-container" class="container flow-column">
         <form id="form" autocomplete="off">
             <div id="choices-container">
                 <div class="form-container stimulus-number-container">
-                    <label for="stimulus-number">When you press start, 'red', 'blue', or 'green' will flash on the screen, and the text will be colored red, blue, or green. For each word, <span id="instruction-type">press the button corresponding to the <span id="meaning-color">meaning</span> of the displayed word while ignoring the word's color</span>, and aim to maximize correct responses. You will have 45 seconds.</label>
+                    <label for="stimulus-number">You will have 45 seconds</label>
+                    <img src="./images/question-circle-solid.svg" id="question-icon">
+                    <div id="quantity-information">
+                        <div id="quantity-text">Entering the number 15 will display 30 words in total - 15 with<br> matching meaning and color, 15 with mismatched meaning and color</div>
+                    </div>
                 </div>
                 
                 <div class="form-container">
@@ -44,9 +41,20 @@
                     <input type="radio" name="evaluation" id="word-color" value="word-color">
                     <label for="word-color">Evaluate Word Color</label><br>
                 </div>
+
+                <label for="stimulus-number">Instructions in:</label>
+                <div class="form-container">
+                    <input type="radio" name="evaluation" id="word-meaning" value="word-meaning" checked>
+                    <label for="word-meaning">English</label><br>
+                </div>
+    
+                <div class="form-container">
+                    <input type="radio" name="evaluation" id="word-color" value="word-color">
+                    <label for="word-color">Español</label><br>
+                </div>
             </div>
         </form>
-        <button class="button" id="translate-button" type="button" onclick="translateToSpanish()">Translate to Spanish</button>
+
         <button class="button" id="start-button" type="button">Start</button>
     </div>
 
@@ -92,35 +100,3 @@
     </div>
 </body>
 </html>
-
-<script>
-    function translateToSpanish() {
-        // Get the elements to be translated
-        const instructionType = document.getElementById('instruction-type');
-        const meaningColor = document.getElementById('meaning-color');
-
-        // Update the instructions to Spanish
-        instructionType.innerText = 'presiona el botón correspondiente al ';
-        meaningColor.innerText = 'color';
-
-        // Update button text
-        const translateButton = document.getElementById('translate-button');
-        translateButton.innerText = 'Translate to English';
-        translateButton.onclick = translateToEnglish;
-    }
-
-    function translateToEnglish() {
-        // Get the elements to be translated
-        const instructionType = document.getElementById('instruction-type');
-        const meaningColor = document.getElementById('meaning-color');
-
-        // Update the instructions to English
-        instructionType.innerText = 'press the button corresponding to the ';
-        meaningColor.innerText = 'meaning';
-
-        // Update button text
-        const translateButton = document.getElementById('translate-button');
-        translateButton.innerText = 'Translate to Spanish';
-        translateButton.onclick = translateToSpanish;
-    }
-</script>

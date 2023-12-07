@@ -216,11 +216,11 @@ function endTest() {
 function addEndTestCounters() {
   // # of matched correct words
   // # of mismatched correct words
-  // # of incrrect
-  let num_matching_correct = matchingCounter / 2;
-  let num_mismatching_correct = mismatchingCounter / 2;
+  // # of incorrect
+  let num_matching_correct = matchingCounter / 2; // Corrected variable name
+  let num_mismatching_correct = mismatchedCounter / 2;
   domElements.timeDivs.matched.innerHTML = num_matching_correct;
-  domElements.timeDivs.mismatched.innerHTML = num_mismatching_correct;
+  domElements.timeDivs.mismatched.innerHTML = num_mismatching_correct; // Corrected variable name
   domElements.incorrectDiv.innerHTML = incorrectCounter;
 }
 
