@@ -106,6 +106,16 @@ function handleButtonAnswer(button$) {
   getButtonText(button$) === evaluatingMeaningOrColor()
     ? handleCorrectButtonAnswer()
     : handleIncorrectButtonAnswer();
+
+  const isCorrect = getButtonText(button$) === evaluatingMeaningOrColor();
+
+  if (isCorrect) {
+    handleCorrectButtonAnswer();
+    console.log("Correct!");
+  } else {
+    handleIncorrectButtonAnswer();
+    console.log("Incorrect!");
+  }
 }
 
 /** Randomly generates a matching or mismatched word-color pair and displays it */
@@ -140,11 +150,6 @@ function displayNewWordAndRestartTimer() {
 
 /** Validates number input, hides start button, shows color buttons, displays printed word and (re)starts timer */
 function handleStartClick() {
-  // if (getQuantityFieldValue() < 1 || isNaN( getQuantityFieldValue() )) {
-  //     alert("Number must be higher than 0")
-  //     return;
-  // }
-
   numberOfWords = 20;
   evaluatingMeaningOrColor = getRadioButtonChoice();
 
@@ -216,6 +221,10 @@ function addEndTestCounters() {
   const averageTimeMismatched = (
     sumOfArray(mismatchedTimes) / mismatchedTimes.length
   ).toFixed(5);
+
+  // # of matched correct words
+  // # of mismatched correct words
+  // # of incrrect
 
   domElements.timeDivs.matched.innerHTML = averageTimeMatching;
   domElements.timeDivs.mismatched.innerHTML = averageTimeMismatched;
