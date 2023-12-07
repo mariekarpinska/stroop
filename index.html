@@ -179,16 +179,18 @@
 
     <div id="learn-container" class="container flow-column">
         <div id="word-display-area-four"></div>
-        <div class="form-container">
-            <input type="radio" name="instruction-language" id="english" value="english" checked
-                onchange="toggleInstructions()">
-            <label for="english">English</label><br>
-        </div>
+        <div id="choices-container">
+            <div class="form-container">
+                <input type="radio" name="instruction-language" id="english" value="english" checked
+                    onchange="toggleInstructions()">
+                <label for="english">English</label><br>
+            </div>
 
-        <div class="form-container">
-            <input type="radio" name="instruction-language" id="espanol" value="espanol"
-                onchange="toggleInstructions()">
-            <label for="espanol">Español</label><br>
+            <div class="form-container">
+                <input type="radio" name="instruction-language" id="espanol" value="espanol"
+                    onchange="toggleInstructions()">
+                <label for="espanol">Español</label><br>
+            </div>
         </div>
         <div class="form-container">
             <label id="word-display-area-five" for="english">
