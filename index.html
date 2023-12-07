@@ -25,11 +25,17 @@
         <form id="form" autocomplete="off">
             <div id="choices-container">
                 <div class="form-container stimulus-number-container">
-                    <label id="english-instructions" for="english">
-                        When you press start, 'red', 'blue', or 'green' will flash on the screen and the text will be colored red, blue, or green. For each word, **press the button corresponding to the meaning of the displayed word while ignoring the word's color**, and aim to maximize correct responses. You will have 45 seconds.
+                    <label id="english-instructions-meaning" for="english">
+                        When you press start, 'red', 'blue', or 'green' will flash on the screen and the text will be colored red, blue, or green. For each word, press the button corresponding to the MEANING of the displayed word while ignoring the word's COLOR, and aim to maximize correct responses. You will have 45 seconds.
                     </label>
-                    <label id="espanol-instructions" style="display: none;">
-                        Cuando presiones iniciar, 'red'(rojo), 'blue'(azul) o 'green'(verde) se iluminarán en la pantalla y el texto estará coloreado de rojo, azul o verde. Para cada palabra, presiona el botón que corresponde al significado de la palabra mostrada, ignorando el color de la palabra, y procura maximizar las respuestas correctas. Tendrás 45 segundos.
+                    <label id="espanol-instructions-meaning" style="display: none;">
+                        Cuando presiones iniciar, 'red'(rojo), 'blue'(azul) o 'green'(verde) se iluminarán en la pantalla y el texto estará coloreado de rojo, azul o verde. Para cada palabra, presiona el botón que corresponde al SIGNIFICADO de la palabra mostrada, ignorando el COLOR de la palabra, y procura maximizar las respuestas correctas. Tendrás 45 segundos.
+                    </label>
+                    <label id="english-instructions-color" for="english">
+                        When you press start, 'red', 'blue', or 'green' will flash on the screen and the text will be colored red, blue, or green. For each word, press the button corresponding to the COLOR of the displayed word while ignoring the word's MEANING, and aim to maximize correct responses. You will have 45 seconds.
+                    </label>
+                    <label id="espanol-instructions-color" style="display: none;">
+                        Cuando presiones iniciar, 'red'(rojo), 'blue'(azul) o 'green'(verde) se iluminarán en la pantalla y el texto estará coloreado de rojo, azul o verde. Para cada palabra, presiona el botón que corresponde al COLOR de la palabra, ignorando el SIGNIFICADO de la palabra mostrada, y procura maximizar las respuestas correctas. Tendrás 45 segundos.
                     </label>
                 </div>
 
@@ -109,15 +115,35 @@
 
     <script>
         function toggleInstructions() {
-            const englishInstructions = document.getElementById('english-instructions');
-            const espanolInstructions = document.getElementById('espanol-instructions');
+            const englishInstructionsMeaning = document.getElementById('english-instructions-meaning');
+            const espanolInstructionsMeaning = document.getElementById('espanol-instructions-meaning');
+            const englishInstructionsColor = document.getElementById('english-instructions-color');
+            const espanolInstructionsColor = document.getElementById('espanol-instructions-color');
             
-            if (document.getElementById('english').checked) {
-                englishInstructions.style.display = 'block';
-                espanolInstructions.style.display = 'none';
+            const isEnglish = document.getElementById('english').checked;
+            const isWordMeaning = document.getElementById('word-meaning').checked;
+
+            if (isEnglish && isWordMeaning) {
+                englishInstructionsMeaning.style.display = 'block';
+                espanolInstructionsMeaning.style.display = 'none';
+                englishInstructionsColor.style.display = 'none';
+                espanolInstructionsColor.style.display = 'none';
+            } else if (isEnglish && !isWordMeaning) {
+                englishInstructionsMeaning.style.display = 'none';
+                espanolInstructionsMeaning.style.display = 'none';
+                englishInstructionsColor.style.display = 'block';
+                espanolInstructionsColor.style.display = 'none';
+            } else if (!isEnglish && isWordMeaning) {
+                englishInstructionsMeaning.style.display = 'none';
+                espanolInstructionsMeaning.style.display = 'block';
+                englishInstructionsColor.style.display = 'none';
+                espanolInstructionsColor.style.display = 'none';
             } else {
-                englishInstructions.style.display = 'none';
-                espanolInstructions.style.display = 'block';
+                // (!isEnglish && !isWordMeaning)
+                englishInstructionsMeaning.style.display = 'none';
+                espanolInstructionsMeaning.style.display = 'none';
+                englishInstructionsColor.style.display = 'none';
+                espanolInstructionsColor.style.display = 'block';
             }
         }
     </script>
