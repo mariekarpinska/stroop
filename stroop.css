@@ -82,6 +82,12 @@ html, body {
     overflow: auto;
 }
 
+#word-display-area-five-spanish{
+    font-size: 12px;
+    color: white;
+    white-space: pre-line;
+    overflow: auto;
+}
 
 /* ⭐ STIMULUS NUMBER ⭐ */
 input[type=number] {
