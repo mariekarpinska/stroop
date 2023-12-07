@@ -185,9 +185,9 @@ function handleStartClick2() {
 
   const {
     form,
-    buttons: { start2, redChoice, greenChoice, blueChoice },
+    buttons: { redChoice, greenChoice, blueChoice },
   } = domElements;
-
+  const { start2 } = domElements.buttons;
   toggleDomElementsDisplay([form, start2, redChoice, greenChoice, blueChoice]);
   domElements.containers.end.remove();
 
