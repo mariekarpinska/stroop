@@ -75,6 +75,14 @@ html, body {
     align-items: center;
 }
 
+#word-display-area-five {
+    font-size: 12px;
+    color: white;
+    white-space: pre-line;
+    overflow: auto;
+}
+
+
 /* ⭐ STIMULUS NUMBER ⭐ */
 input[type=number] {
     width: 80px;
