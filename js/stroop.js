@@ -76,6 +76,26 @@ function addEventListenersToNumpadKeys() {
     }
   });
 }
+function addEventListenersToNumpadKeysTwo() {
+  document.addEventListener("keydown", (event) => {
+    const { redChoiceTwo, greenChoiceTwo, blueChoiceTwo } = domElements.buttons;
+
+    switch (event.key) {
+      case "1":
+        handleColorButtonClick(redChoiceTwo);
+        indicateButtonChoice(redChoiceTwo);
+        break;
+      case "2":
+        handleColorButtonClick(greenChoiceTwo);
+        indicateButtonChoice(greenChoiceTwo);
+        break;
+      case "3":
+        handleColorButtonClick(blueChoiceTwo);
+        indicateButtonChoice(blueChoiceTwo);
+        break;
+    }
+  });
+}
 
 function handleMatchScenario() {
   matchingCounter++;
@@ -214,19 +234,19 @@ function handleStartClick2() {
 
   const {
     form,
-    buttons: { redChoice, greenChoice, blueChoice },
+    buttons: { redChoiceTwo, greenChoiceTwo, blueChoiceTwo },
   } = domElements;
   const { startTwo } = domElements.buttons;
   toggleDomElementsDisplay([
     form,
     startTwo,
-    redChoice,
-    greenChoice,
-    blueChoice,
+    redChoiceTwo,
+    greenChoiceTwo,
+    blueChoiceTwo,
   ]);
   domElements.containers.end.remove();
 
-  addEventListenersToNumpadKeys();
+  addEventListenersToNumpadKeysTwo();
 
   displayNewWordAndRestartTimerTwo();
 
@@ -236,6 +256,11 @@ function handleStartClick2() {
 function handleColorButtonClick(buttonClicked$) {
   handleButtonAnswer(buttonClicked$);
   displayNewWordAndRestartTimer();
+  logInfo();
+}
+function handleColorButtonClickTwo(buttonClicked$) {
+  handleButtonAnswer(buttonClicked$);
+  displayNewWordAndRestartTimerTwo();
   logInfo();
 }
 
@@ -267,14 +292,18 @@ function endTest() {
   firstPhaseCorrect = matchingCounter / 2 + mismatchedCounter / 2;
 
   addEndTestCounters();
-  const { startTwo } = domElements.buttons;
+  const { startTwo, redChoiceTwo, greenChoiceTwo, blueChoiceTwo } =
+    domElements.buttons;
   startTwo.addEventListener("click", () => handleStartClick2());
-  redChoice.addEventListener("click", () => handleColorButtonClick(redChoice));
-  greenChoice.addEventListener("click", () =>
-    handleColorButtonClick(greenChoice)
+
+  redChoiceTwo.addEventListener("click", () =>
+    handleColorButtonClick(redChoiceTwo)
   );
-  blueChoice.addEventListener("click", () =>
-    handleColorButtonClick(blueChoice)
+  greenChoiceTwo.addEventListener("click", () =>
+    handleColorButtonClick(greenChoiceTwo)
+  );
+  blueChoiceTwo.addEventListener("click", () =>
+    handleColorButtonClick(blueChoiceTwo)
   );
 }
 
