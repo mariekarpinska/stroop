@@ -234,19 +234,30 @@
         function toggleInstructions() {
             const englishInstructions = document.getElementById('english-instructions');
             const espanolInstructions = document.getElementById('espanol-instructions');
-            const wordDisplayAreaEnglish = document.getElementById('word-display-area-five');
-            const wordDisplayAreaSpanish = document.getElementById('word-display-area-five-spanish');
 
             const isEnglish = document.getElementById('english').checked;
 
             if (isEnglish) {
                 englishInstructions.style.display = 'block';
                 espanolInstructions.style.display = 'none';
-                wordDisplayAreaEnglish.style.display = 'block';
-                wordDisplayAreaSpanish.style.display = 'none';
             } else {
                 englishInstructions.style.display = 'none';
                 espanolInstructions.style.display = 'block';
+            }
+        }
+
+        function toggleParagraphs() {
+            
+            const wordDisplayAreaEnglish = document.getElementById('word-display-area-five');
+            const wordDisplayAreaSpanish = document.getElementById('word-display-area-five-spanish');
+            
+            const isEnglish = document.getElementById('english').checked;
+
+            
+            if (isEnglish) {
+                wordDisplayAreaEnglish.style.display = 'block';
+                wordDisplayAreaSpanish.style.display = 'none';
+            } else {
                 wordDisplayAreaEnglish.style.display = 'none';
                 wordDisplayAreaSpanish.style.display = 'block';
             }

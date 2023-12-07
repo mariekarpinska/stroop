@@ -25,9 +25,14 @@ const toggleDomElementsDisplay = (elements$) =>
   elements$.forEach((el$) => el$.classList.toggle("no-display"));
 
 const getPrintedWordText = () => domElements.wordDisplayArea.innerHTML;
-const getPrintedWordColor = () => domElements.wordDisplayAreaTwo.style.color;
+const getPrintedWordColor = () => domElements.wordDisplayArea.style.color;
+const getPrintedWordTextTwo = () => domElements.wordDisplayAreaTwo.innerHTML;
+const getPrintedWordColorTwo = () => domElements.wordDisplayAreaTwo.style.color;
 const isPrintedWordMatching = () =>
   getPrintedWordText() === getPrintedWordColor();
+
+const isPrintedWordMatchingTwo = () =>
+  getPrintedWordTextTwo() === getPrintedWordColorTwo();
 // const getQuantityFieldValue = () =>
 //   domElements.formElements.stimulusNumberField.value;
 
@@ -134,6 +139,36 @@ function handleButtonAnswer(button$) {
 
   if (isCorrect) {
     handleCorrectButtonAnswer();
+    console.log("Correct!");
+  } else {
+    handleIncorrectButtonAnswer();
+    console.log("Incorrect!");
+  }
+}
+
+function handleButtonAnswerTwo(button$) {
+  let isCorrect = false;
+
+  if (evaluatingMeaningOrColor === getPrintedWordTextTwo) {
+    console.log("evaluatingMeaningOrColor === getPrintedWordText");
+    console.log("getButtonText(button$)", getButtonText(button$));
+    console.log("getPrintedWordText()", getPrintedWordTextTwo());
+    getButtonText(button$) === getPrintedWordTextTwo()
+      ? handleCorrectButtonAnswerTwo()
+      : handleIncorrectButtonAnswer();
+    isCorrect = getButtonText(button$) === getPrintedWordTextTwo();
+  } else {
+    console.log("evaluatingMeaningOrColor === getPrintedWordColor");
+    console.log("getButtonText(button$)", getButtonText(button$));
+    console.log("getPrintedWordColorTwo()", getPrintedWordColorTwo());
+    getButtonText(button$) === getPrintedWordColorTwo()
+      ? handleCorrectButtonAnswerTwo()
+      : handleIncorrectButtonAnswer();
+    isCorrect = getButtonText(button$) === getPrintedWordColorTwo();
+  }
+
+  if (isCorrect) {
+    handleCorrectButtonAnswerTwo();
     console.log("Correct!");
   } else {
     handleIncorrectButtonAnswer();
@@ -293,7 +328,7 @@ function handleColorButtonClick(buttonClicked$) {
 }
 function handleColorButtonClickTwo(buttonClicked$) {
   console.log("handleColorButtonClickTwo");
-  handleButtonAnswer(buttonClicked$);
+  handleButtonAnswerTwo(buttonClicked$);
   console.log("handleButtonAnswer(buttonClicked$);");
   displayNewWordAndRestartTimerTwo();
   logInfo();
