@@ -4,7 +4,6 @@ import {
   generateMatchingWordAndColor,
   generateMismatchedWordAndColor,
 } from "./word-color-generation.js";
-import { createFile } from "./download-file.js";
 
 const timeFunctions = new TimeFunctions();
 
@@ -229,7 +228,7 @@ function handleStartClick() {
 
   displayNewWordAndRestartTimer();
 
-  setTimeout(endTest, 4500);
+  setTimeout(endTest, 45000);
 }
 
 function handleStartClick2() {
@@ -261,7 +260,7 @@ function handleStartClick2() {
   console.log("addEventListenersToNumpadKeysTwo");
   displayNewWordAndRestartTimerTwo();
 
-  setTimeout(endTest2, 4500);
+  setTimeout(endTest2, 45000);
 }
 
 function handleLearnClick() {
@@ -287,7 +286,7 @@ function handleLearnClick() {
   wordDisplayAreaFour.style.color = "white";
 
   const entireText = `\n\n\n
-You have just completed a Stroop test, where you saw a list of words on a computer screen. The words were all names of colors, such as “red”, “blue”, “green”, and so on. However, the words were printed in different colors than their meanings. For example, you might have seen the word “red” in blue ink, or the word “green” in yellow ink. Your task was to either name the word or the color of the ink, depending on the instructions. How did you do?
+You have just completed a Stroop test, where you saw a list of words on a computer screen. The words were all names of colors, such as “red”, “blue”, “green”, and so on. However, the words were printed in different colors than their meanings. For example, you might have seen the word “red” in blue ink, or the word “green” in red ink. Your task was to either name the word or the color of the ink, depending on the instructions. How did you do?
 If you are like most people, you probably found it easier to name the word than the color of the ink, especially when the word and the color did not match. You might have also noticed that you were slower and more prone to errors when you had to name the color of the ink than when you had to name the word itself. This is because reading is a more automatic and dominant process than color naming, and it interferes with your ability to focus on the less familiar task. This phenomenon is known as the Stroop effect, and it is one of the most widely studied effects in cognitive psychology.\n\n
 The Stroop effect is named after John Ridley Stroop, an American psychologist who published the first paper on this topic in English in 1935. However, the effect was actually discovered earlier by a German psychologist named Erich Rudolf Jaensch in 1929. Jaensch was interested in the differences between people who had a strong or weak “eidetic” memory, which is the ability to recall images vividly and accurately. He devised a test where he presented words that were either congruent or incongruent with their meanings, and asked the participants to either read the word or name the color. He found that people with a weak eidetic memory had more difficulty in naming the color than reading the word, while people with a strong eidetic memory had less difficulty in both tasks. He interpreted this as a sign of different levels of “mental rigidity” or “mental flexibility” among the participants.\n\n
 Stroop, on the other hand, was more interested in the general aspects of cognitive functioning, such as attention, perception, and memory. He replicated Jaensch’s experiment with some modifications, and added a third condition where the words were not color names, but neutral words, such as “dog”, “cat”, “house”, and so on. He also measured the reaction time and accuracy of the participants in each condition. He found that the incongruent condition was the most difficult and slowest, followed by the neutral condition, and then the congruent condition. He explained this as a result of the interference between the two processes of word reading and color naming, which competed for the same mental resources. He also suggested that the interference could be reduced by increasing the practice, motivation, or attention of the participants.\n\n
@@ -296,7 +295,7 @@ One interesting and local applications of the Stroop test is related to the Neur
 There are many different ways to calculate a score for the Stroop test, but the one used today is inspired by one of the most widely used methods proposed by Golden in 1978. This method involves computing the interference score, which is the difference in performance between the color and meaning conditions. The interference score reflects the degree of difficulty in inhibiting the automatic word reading and focusing on the color naming. The formula for the interference score is:\n
 Interference score = C * W / (C + W)\n
 where C is the number of correct responses selecting the color of the word and W is the number of correct responses selecting the meaning of the word in 45 seconds.\n\n
-The Stroop test is a useful tool for measuring cognitive functioning and detecting signs of impairment or improvement. It can reveal how well a person can control their attention, suppress irrelevant information, and cope with interference. It can also indicate the presence or absence of brain damage, mental disorders, or cognitive decline. The Stroop test can also be used to evaluate the effectiveness of interventions, such as neurofeedback, that aim to enhance cognitive functioning and reduce recidivism.\n\n
+The Stroop test is a useful tool for measuring cognitive functioning and detecting signs of impairment or improvement. It can reveal how well a person can control their attention, suppress irrelevant information, and cope with interference. It can also indicate the presence or absence of brain damage, mental disorders, or cognitive decline. The Stroop test can also be used to evaluate the effectiveness of interventions, such as neurofeedback, that aim to enhance cognitive functioning and reduce recidivism.\n\nRefresh to try again!
 `;
 
   wordDisplayAreaFive.innerHTML = entireText;
