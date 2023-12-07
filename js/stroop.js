@@ -188,7 +188,7 @@ function handleStartClick2() {
     buttons: { start2, redChoice, greenChoice, blueChoice },
   } = domElements;
 
-  toggleDomElementsDisplay([form, start, redChoice, greenChoice, blueChoice]);
+  toggleDomElementsDisplay([form, start2, redChoice, greenChoice, blueChoice]);
   domElements.containers.end.remove();
 
   addEventListenersToNumpadKeys();
