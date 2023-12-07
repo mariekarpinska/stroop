@@ -93,11 +93,11 @@ const handleIncorrectButtonAnswer = () => incorrectCounter++;
 
 /** Checks if user's answer was correct */
 function handleButtonAnswer(button$) {
-  getButtonText(button$) === evaluatingMeaningOrColor()
+  getButtonText(button$) === evaluatingMeaningOrColor
     ? handleCorrectButtonAnswer()
     : handleIncorrectButtonAnswer();
 
-  const isCorrect = getButtonText(button$) === evaluatingMeaningOrColor();
+  const isCorrect = getButtonText(button$) === evaluatingMeaningOrColor;
 
   if (isCorrect) {
     handleCorrectButtonAnswer();
@@ -171,7 +171,7 @@ function handleStartClick2() {
 
   const {
     form,
-    buttons: { start, redChoice, greenChoice, blueChoice },
+    buttons: { start2, redChoice, greenChoice, blueChoice },
   } = domElements;
 
   toggleDomElementsDisplay([form, start, redChoice, greenChoice, blueChoice]);
@@ -203,7 +203,7 @@ function endTest() {
   const {
     wordDisplayArea,
     containers: { result },
-    buttons: { redChoice, greenChoice, blueChoice },
+    buttons: { start2, redChoice, greenChoice, blueChoice },
   } = domElements;
 
   toggleDomElementsDisplay([

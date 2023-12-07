@@ -110,7 +110,7 @@ input[type=number] {
     background-color: var(--light-color);
     border-radius: 10px;
     text-align: center;
-    width: 100px;
+    width: 300px;
     height: 75px;
     cursor: pointer;
     padding: 0px;
