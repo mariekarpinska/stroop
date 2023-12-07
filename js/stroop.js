@@ -345,123 +345,38 @@ function endTest2() {
   score =
     (firstPhaseCorrect * secondPhaseCorrect) /
     (firstPhaseCorrect + secondPhaseCorrect);
+  const scoreDiv = document.createElement("div");
+  scoreDiv.className = "time-container";
+  scoreDiv.innerHTML = `
+      <div class="time-title">Score</div>
+      <div class="time-div" id="score-div">${score.toFixed(2)}</div>
+    `;
 
-  const topScores = loadTopScores();
-
-  // Compare the user's score with the top scores
-  const isNewHighScore = topScores.some((topScore) => score > topScore.score);
-
-  if (isNewHighScore) {
-    // Allow the user to enter their name
-    const endContainer2 = document.getElementById("end-container2");
-
-    const formContainer = document.createElement("div");
-    formContainer.innerHTML = `
-        <div class="time-title">Congratulations! You achieved a new high score!</div>
-        <form id="highScoreForm">
-          <label for="userName">Enter your name:</label>
-          <input type="text" id="userName" required>
-          <button type="submit">Save</button>
-        </form>
-      `;
-
-    const highScoreForm = formContainer.querySelector("#highScoreForm");
-    const userNameInput = formContainer.querySelector("#userName");
-
-    highScoreForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      // Add the new high score to the top scores
-      topScores.push({ name: userNameInput.value, score });
-
-      // Sort the top scores by score in descending order
-      topScores.sort((a, b) => b.score - a.score);
-
-      // Keep only the top 10 scores
-      topScores.splice(10);
-
-      // Save the updated top scores
-      saveTopScores(topScores);
-
-      // Remove the form and display the top scores
-      formContainer.remove();
-      addEndTestCounters();
-      displayTopScores(topScores, endContainer2);
-    });
-
-    endContainer2.appendChild(formContainer);
-  } else {
-    displayTopScores(topScores, endContainer2);
-  }
+  result.appendChild(scoreDiv);
 }
-
-function displayTopScores(topScores, container) {
-  const topScoresContainer = document.createElement("div");
-  topScoresContainer.classList.add("time-container");
-  topScoresContainer.innerHTML = `<div class="time-title">Top Scores</div>`;
-
-  topScores.forEach((topScore, index) => {
-    topScoresContainer.innerHTML += `<div class="time-div">${index + 1}. ${
-      topScore.name
-    }: ${topScore.score}</div>`;
-  });
-
-  container.appendChild(topScoresContainer);
-}
-
-/** Checks if word limit has been reached */
-// function tryEndTest() {
-//   if (matchingCounter >= numberOfWords && mismatchedCounter >= numberOfWords) {
-//     endTest();
-//   }
-// }
 
 /** Displays matching & mismatched time averages and incorrect counter */
 function addEndTestCounters() {
   // # of matched correct words
   // # of mismatched correct words
   // # of incorrect
-  let num_matching_correct = matchingCounter / 2; // Corrected variable name
+  let num_matching_correct = matchingCounter / 2;
   let num_mismatching_correct = mismatchedCounter / 2;
   let incorrectCount = incorrectCounter / 2;
   domElements.timeDivs.matched.innerHTML = num_matching_correct;
-  domElements.timeDivs.mismatched.innerHTML = num_mismatching_correct; // Corrected variable name
+  domElements.timeDivs.mismatched.innerHTML = num_mismatching_correct;
   domElements.incorrectDiv.innerHTML = incorrectCount;
 }
 function addEndTestCountersTwo() {
   // # of matched correct words
   // # of mismatched correct words
   // # of incorrect
-  let num_matching_correct = matchingCounter / 2; // Corrected variable name
+  let num_matching_correct = matchingCounter / 2;
   let num_mismatching_correct = mismatchedCounter / 2;
   let incorrectCount = incorrectCounter / 2;
   domElements.timeDivs.matchedScore.innerHTML = num_matching_correct;
-  domElements.timeDivs.mismatchedScore.innerHTML = num_mismatching_correct; // Corrected variable name
+  domElements.timeDivs.mismatchedScore.innerHTML = num_mismatching_correct;
   domElements.incorrectScore.innerHTML = incorrectCount;
-}
-function loadTopScores() {
-  return fetch("topScores.txt")
-    .then((response) => response.text())
-    .then((data) => {
-      try {
-        const parsedData = JSON.parse(data);
-        console.log("parsedData", parsedData);
-
-        if (Array.isArray(parsedData)) {
-          return parsedData;
-        } else {
-          console.error("Invalid topScores data:", parsedData);
-          return [];
-        }
-      } catch (error) {
-        console.error("Error parsing topScores data:", error);
-        return [];
-      }
-    })
-    .catch((error) => {
-      console.error("Error reading topScores.txt:", error);
-      return [];
-    });
 }
 
 /** Adds event handlers to buttons */
