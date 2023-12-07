@@ -295,7 +295,7 @@ function endTest2() {
   ]);
   domElements.containers.testTwo.remove();
 
-  secondPhaseCorrect = matchingCounter / 2 + mismatchedCounter / 2;
+  let secondPhaseCorrect = matchingCounter / 2 + mismatchedCounter / 2;
 
   score =
     (firstPhaseCorrect * secondPhaseCorrect) /
