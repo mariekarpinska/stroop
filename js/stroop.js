@@ -96,11 +96,17 @@ function handleButtonAnswer(button$) {
   let isCorrect = false;
 
   if (evaluatingMeaningOrColor === getPrintedWordText) {
+    console.log("evaluatingMeaningOrColor === getPrintedWordText");
+    console.log("getButtonText(button$)", getButtonText(button$));
+    console.log("getPrintedWordText()", getPrintedWordText());
     getButtonText(button$) === getPrintedWordText()
       ? handleCorrectButtonAnswer()
       : handleIncorrectButtonAnswer();
     isCorrect = getButtonText(button$) === getPrintedWordText();
   } else {
+    console.log("evaluatingMeaningOrColor === getPrintedWordColor");
+    console.log("getButtonText(button$)", getButtonText(button$));
+    console.log("getPrintedWordColor()", getPrintedWordColor());
     getButtonText(button$) === getPrintedWordColor()
       ? handleCorrectButtonAnswer()
       : handleIncorrectButtonAnswer();
