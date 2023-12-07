@@ -16,6 +16,8 @@ export let mismatchedTimes = [];
 
 let matchingCounter = 0;
 let mismatchedCounter = 0;
+let firstPhaseCorrect = 0;
+let score = 0;
 export let incorrectCounter = 0;
 
 const sumOfArray = (array) => array.reduce((a, b) => a + b, 0);
@@ -139,7 +141,7 @@ function displayNewWordAndRestartTimer() {
 /** Validates number input, hides start button, shows color buttons, displays printed word and (re)starts timer */
 function handleStartClick() {
   numberOfWords = 20;
-  evaluatingMeaningOrColor = getRadioButtonChoice();
+  evaluatingMeaningOrColor = getPrintedWordColor(); // phase 2: getPrintedWordText
 
   const {
     form,
@@ -156,10 +158,35 @@ function handleStartClick() {
   setTimeout(endTest, 45000);
 }
 
+function handleStartClick2() {
+  numberOfWords = 20;
+  evaluatingMeaningOrColor = getPrintedWordText(); // phase 2
+
+  // Clear counters for the second phase
+  matchedTimes = [];
+  mismatchedTimes = [];
+  matchingCounter = 0;
+  mismatchedCounter = 0;
+  incorrectCounter = 0;
+
+  const {
+    form,
+    buttons: { start, redChoice, greenChoice, blueChoice },
+  } = domElements;
+
+  toggleDomElementsDisplay([form, start, redChoice, greenChoice, blueChoice]);
+  domElements.containers.end.remove();
+
+  addEventListenersToNumpadKeys();
+
+  displayNewWordAndRestartTimer();
+
+  setTimeout(endTest2, 45000);
+}
+
 function handleColorButtonClick(buttonClicked$) {
   handleButtonAnswer(buttonClicked$);
   displayNewWordAndRestartTimer();
-  //   tryEndTest();
   logInfo();
 }
 
@@ -188,9 +215,97 @@ function endTest() {
   ]);
   domElements.containers.test.remove();
 
-  addEndTestCounters();
+  firstPhaseCorrect = matchingCounter / 2 + mismatchedCounter / 2;
 
-  createFile();
+  addEndTestCounters();
+  start2.addEventListener("click", () => handleStartClick2());
+}
+
+/** Removes test container with choice buttons and displays end information counters */
+function endTest2() {
+  const {
+    wordDisplayArea,
+    containers: { result },
+    buttons: { redChoice, greenChoice, blueChoice },
+  } = domElements;
+
+  toggleDomElementsDisplay([
+    wordDisplayArea,
+    result,
+    redChoice,
+    greenChoice,
+    blueChoice,
+  ]);
+  domElements.containers.test2.remove();
+
+  secondPhaseCorrect = matchingCounter / 2 + mismatchedCounter / 2;
+
+  score =
+    (firstPhaseCorrect * secondPhaseCorrect) /
+    (firstPhaseCorrect + secondPhaseCorrect);
+
+  const topScores = loadTopScores();
+
+  // Compare the user's score with the top scores
+  const isNewHighScore = topScores.some((topScore) => score > topScore.score);
+
+  if (isNewHighScore) {
+    // Allow the user to enter their name
+    const endContainer2 = document.getElementById("end-container2");
+
+    const formContainer = document.createElement("div");
+    formContainer.innerHTML = `
+        <div class="time-title">Congratulations! You achieved a new high score!</div>
+        <form id="highScoreForm">
+          <label for="userName">Enter your name:</label>
+          <input type="text" id="userName" required>
+          <button type="submit">Save</button>
+        </form>
+      `;
+
+    const highScoreForm = formContainer.querySelector("#highScoreForm");
+    const userNameInput = formContainer.querySelector("#userName");
+
+    highScoreForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      // Add the new high score to the top scores
+      topScores.push({ name: userNameInput.value, score });
+
+      // Sort the top scores by score in descending order
+      topScores.sort((a, b) => b.score - a.score);
+
+      // Keep only the top 10 scores
+      topScores.splice(10);
+
+      // Save the updated top scores
+      saveTopScores(topScores);
+
+      // Remove the form and display the top scores
+      formContainer.remove();
+      addEndTestCounters();
+      displayTopScores(topScores, endContainer2);
+    });
+
+    endContainer2.appendChild(formContainer);
+  } else {
+    addEndTestCounters();
+    displayTopScores(topScores, endContainer2);
+  }
+}
+
+function displayTopScores(topScores, container) {
+  const topScoresContainer = document.createElement("div");
+  topScoresContainer.classList.add("time-container");
+  topScoresContainer.innerHTML = `<div class="time-title">Top Scores</div>`;
+
+  topScores.forEach((topScore, index) => {
+    topScoresContainer.innerHTML += `<div class="time-div">${index + 1}. ${
+      topScore.name
+    }: ${topScore.score}</div>`;
+  });
+
+  container.appendChild(topScoresContainer);
 }
 
 /** Checks if word limit has been reached */

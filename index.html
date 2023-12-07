@@ -23,7 +23,7 @@
 
     <div id="start-container" class="container flow-column">
         
-        <form id="form" autocomplete="off">
+        <!-- <form id="form" autocomplete="off">
             <div id="choices-container">
                 <div class="form-container">
                     <input type="radio" name="evaluation" id="word-meaning" value="word-meaning" checked onchange="toggleInstructions()">
@@ -35,21 +35,15 @@
                     <label for="word-color">Evaluate Word Color</label><br>
                 </div>
             </div>
-        </form>
+        </form> -->
 
         <form id="form" autocomplete="off">
             <div id="choices-container">
                 <div class="form-container stimulus-number-container">
-                    <label id="english-instructions-meaning" for="english">
-                        When you press start, 'red', 'blue', or 'green' will flash on the screen and the text will be colored red, blue, or green. For each word, press the button corresponding to the MEANING of the displayed word while ignoring the word's COLOR, and aim to maximize correct responses. You will have 45 seconds.
-                    </label>
-                    <label id="espanol-instructions-meaning" style="display: none;">
-                        Cuando presiones iniciar, 'red'(rojo), 'blue'(azul) o 'green'(verde) se iluminarán en la pantalla y el texto estará coloreado de rojo, azul o verde. Para cada palabra, presiona el botón que corresponde al SIGNIFICADO de la palabra mostrada, ignorando el COLOR de la palabra, y procura maximizar las respuestas correctas. Tendrás 45 segundos.
-                    </label>
-                    <label id="english-instructions-color" style="display: none;" for="english">
+                    <label id="english-instructions" style="display: none;" for="english">
                         When you press start, 'red', 'blue', or 'green' will flash on the screen and the text will be colored red, blue, or green. For each word, press the button corresponding to the COLOR of the displayed word while ignoring the word's MEANING, and aim to maximize correct responses. You will have 45 seconds.
                     </label>
-                    <label id="espanol-instructions-color" style="display: none;">
+                    <label id="espanol-instructions" style="display: none;">
                         Cuando presiones iniciar, 'red'(rojo), 'blue'(azul) o 'green'(verde) se iluminarán en la pantalla y el texto estará coloreado de rojo, azul o verde. Para cada palabra, presiona el botón que corresponde al COLOR de la palabra, ignorando el SIGNIFICADO de la palabra mostrada, y procura maximizar las respuestas correctas. Tendrás 45 segundos.
                     </label>
                 </div>
@@ -68,7 +62,8 @@
             </div>
         </form>
 
-        <button class="button" id="start-button" type="button">Start</button>
+        <button class="button" id="start-button" type="button">Start Session One</button>
+
     </div>
 
     <div id="test-container" class="container flow-column">
@@ -110,39 +105,88 @@
             </div>
         </div>
 
+            <div id="choices-container">
+                <div class="form-container stimulus-number-container">
+                    <label id="english-instructions" for="english">
+                        When you press start, 'red', 'blue', or 'green' will flash on the screen and the text will be colored red, blue, or green. For each word, press the button corresponding to the MEANING of the displayed word while ignoring the word's COLOR, and aim to maximize correct responses. You will have 45 seconds.
+                    </label>
+                    <label id="espanol-instructions" style="display: none;">
+                        Cuando presiones iniciar, 'red'(rojo), 'blue'(azul) o 'green'(verde) se iluminarán en la pantalla y el texto estará coloreado de rojo, azul o verde. Para cada palabra, presiona el botón que corresponde al SIGNIFICADO de la palabra mostrada, ignorando el COLOR de la palabra, y procura maximizar las respuestas correctas. Tendrás 45 segundos.
+                    </label>
+                </div>
+
+                <label for="language-selection">Instructions in:</label>
+                
+                <div class="form-container">
+                    <input type="radio" name="instruction-language" id="english" value="english" checked onchange="toggleInstructions()">
+                    <label for="english">English</label><br>
+                </div>
+    
+                <div class="form-container">
+                    <input type="radio" name="instruction-language" id="espanol" value="espanol" onchange="toggleInstructions()">
+                    <label for="espanol">Español</label><br>
+                </div>
+            </div>
+        </form>
+
+        <button class="button" id="start-button2" type="button">Start Session Two</button>
+
+    </div>
+
+    <div id="test-container2" class="container flow-column">
+        <div id="word-display-area"></div>
+
+        <div class="button-container">
+            <div class="numpad-word-container">
+                <button class="button no-display" id="red-choice-button" type="button">red</button>
+                <div class="numpad-number">1</div>
+            </div>
+
+            <div class="numpad-word-container">
+                <button class="button no-display" id="green-choice-button" type="button">green</button>
+                <div class="numpad-number">2</div>
+            </div>
+
+            <div class="numpad-word-container">
+                <button class="button no-display" id="blue-choice-button" type="button">blue</button>
+                <div class="numpad-number">3</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="end-container2" class="container flow-column">
+        <div id="result-container" class="container flow-row">
+            <div class="time-container">
+                <div class="time-title">Correct Matching Pairs</div>
+                <div class="time-div" id="matched-time-div"></div>
+            </div>
+    
+            <div class="time-container">
+                <div class="time-title">Correct Mismatched Pairs</div>
+                <div class="time-div" id="mismatched-time-div"></div>
+            </div>
+    
+            <div class="time-container">
+                <div class="time-title">Incorrect</div>
+                <div class="time-div" id="incorrect-div"></div>
+            </div>
+        </div>
     </div>
 
     <script>
         function toggleInstructions() {
-            const englishInstructionsMeaning = document.getElementById('english-instructions-meaning');
-            const espanolInstructionsMeaning = document.getElementById('espanol-instructions-meaning');
-            const englishInstructionsColor = document.getElementById('english-instructions-color');
-            const espanolInstructionsColor = document.getElementById('espanol-instructions-color');
+            const englishInstructions = document.getElementById('english-instructions');
+            const espanolInstructions = document.getElementById('espanol-instructions');
             
             const isEnglish = document.getElementById('english').checked;
-            const isWordMeaning = document.getElementById('word-meaning').checked;
 
-            if (isEnglish && isWordMeaning) {
-                englishInstructionsMeaning.style.display = 'block';
-                espanolInstructionsMeaning.style.display = 'none';
-                englishInstructionsColor.style.display = 'none';
-                espanolInstructionsColor.style.display = 'none';
-            } else if (isEnglish && !isWordMeaning) {
-                englishInstructionsMeaning.style.display = 'none';
-                espanolInstructionsMeaning.style.display = 'none';
-                englishInstructionsColor.style.display = 'block';
-                espanolInstructionsColor.style.display = 'none';
-            } else if (!isEnglish && isWordMeaning) {
-                englishInstructionsMeaning.style.display = 'none';
-                espanolInstructionsMeaning.style.display = 'block';
-                englishInstructionsColor.style.display = 'none';
-                espanolInstructionsColor.style.display = 'none';
+            if (isEnglish) {
+                englishInstructions.style.display = 'block';
+                espanolInstructions.style.display = 'none';
             } else {
-                // (!isEnglish && !isWordMeaning)
-                englishInstructionsMeaning.style.display = 'none';
-                espanolInstructionsMeaning.style.display = 'none';
-                englishInstructionsColor.style.display = 'none';
-                espanolInstructionsColor.style.display = 'block';
+                // (!isEnglish)
+                englishInstructions.style.display = 'none';
+                espanolInstructions.style.display = 'block';
             }
         }
     </script>
