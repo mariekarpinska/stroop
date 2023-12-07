@@ -214,19 +214,13 @@ function endTest() {
 
 /** Displays matching & mismatched time averages and incorrect counter */
 function addEndTestCounters() {
-  const averageTimeMatching = (
-    sumOfArray(matchedTimes) / matchedTimes.length
-  ).toFixed(5);
-  const averageTimeMismatched = (
-    sumOfArray(mismatchedTimes) / mismatchedTimes.length
-  ).toFixed(5);
-
   // # of matched correct words
   // # of mismatched correct words
   // # of incrrect
-
-  domElements.timeDivs.matched.innerHTML = averageTimeMatching;
-  domElements.timeDivs.mismatched.innerHTML = averageTimeMismatched;
+  num_matching_correct = matchingCounter / 2;
+  num_mismatching_correct = mismatchingCounter / 2;
+  domElements.timeDivs.matched.innerHTML = num_matching_correct;
+  domElements.timeDivs.mismatched.innerHTML = num_mismatching_correct;
   domElements.incorrectDiv.innerHTML = incorrectCounter;
 }
 

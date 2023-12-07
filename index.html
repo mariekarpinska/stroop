@@ -15,7 +15,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 
     <script defer type="module" src="./js/stroop.js"></script>
-    <script defer type="module" src="./js/download-file.js"></script>
     <script defer type="module" src="./js/number-field-validation.js"></script>
 
     <title>Stroop Effect</title>
@@ -80,12 +79,12 @@
     <div id="end-container" class="container flow-column">
         <div id="result-container" class="container flow-row">
             <div class="time-container">
-                <div class="time-title">Matching Time</div>
+                <div class="time-title">Correct Matching Pairs</div>
                 <div class="time-div" id="matched-time-div"></div>
             </div>
     
             <div class="time-container">
-                <div class="time-title">Mismatched Time</div>
+                <div class="time-title">Correct Mismatched Pairs</div>
                 <div class="time-div" id="mismatched-time-div"></div>
             </div>
     
@@ -95,10 +94,6 @@
             </div>
         </div>
 
-        <a class="button" id="download-button" download="info.txt">
-            <div class="text-with-icon">Download Information (.txt)</div>
-            <img src="./images/arrow-circle-down-solid.svg" class="svg-icon">
-        </a>
     </div>
 </body>
 </html>
