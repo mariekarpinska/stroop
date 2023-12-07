@@ -18,18 +18,6 @@ let matchingCounter = 0;
 let mismatchedCounter = 0;
 export let incorrectCounter = 0;
 
-function addEventListenersToInformationIcon() {
-  const { questionIcon, quantityInformation } = domElements.formElements;
-
-  questionIcon.addEventListener("mouseover", function () {
-    quantityInformation.style.display = "block";
-  });
-
-  questionIcon.addEventListener("mouseout", function () {
-    quantityInformation.style.display = "none";
-  });
-}
-
 const sumOfArray = (array) => array.reduce((a, b) => a + b, 0);
 const getButtonText = (button$) => button$.innerHTML;
 const toggleDomElementsDisplay = (elements$) =>
@@ -226,7 +214,6 @@ function addEndTestCounters() {
 
 /** Adds event handlers to buttons */
 function init() {
-  addEventListenersToInformationIcon();
   const { start, redChoice, greenChoice, blueChoice } = domElements.buttons;
   start.addEventListener("click", () => handleStartClick());
   redChoice.addEventListener("click", () => handleColorButtonClick(redChoice));
